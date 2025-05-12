@@ -1,7 +1,10 @@
+import os
+from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, DeclarativeBase
 
-SQLALCHEMY_DATABASE_URL = f"postgresql+psycopg2://postgres:postgres@db:5432/fastapi_db"
+load_dotenv()
+SQLALCHEMY_DATABASE_URL = os.environ["SQLALCHEMY_DATABASE_URL"]
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=True, max_overflow=5)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
